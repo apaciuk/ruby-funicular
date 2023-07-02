@@ -4,14 +4,36 @@ class Router
   end
 
   def route!
-     if @request.path == "/"
-         [200, {"Content-Type" => "text/plain"}, ["Welcome home!"]]
-     else
-         not_found
-     end
-  end 
+    if klass = controller_class
+      add_route_info_to_request_params!
+
+      controller = klass.new(@request)
+      action = route_info[:action]
+
+      if controller.respond_to?(action)
+        puts "\nRouting to #{klass}##{action}"
+        return controller.public_send(action)
+      end
+    end
+
+    not_found
+  end
   
   private 
+
+  def add_route_info_to_request_params! 
+        @request.params.merge!(route_info)
+  end
+
+  def controller_name
+        "#{route_info[:resource].capitalize}Controller"
+  end 
+
+  def controller_class 
+        Object.const_get(controller_name)
+        rescue NameError 
+        nil
+  end 
 
   def route_info 
         @route_info ||= begin
