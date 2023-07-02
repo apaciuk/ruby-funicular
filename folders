@@ -1,0 +1,20 @@
+ruby-funicular/
+├─ app/
+│  ├─ controllers/
+│  │  ├─ base_controller.rb
+│  │  └─ dogs_controller.rb
+│  ├─ models/
+│  │  ├─ base.rb
+│  │  └─ dog.rb
+│  ├─ views/
+│  │  ├─ base/
+│  │  │  ├─ _head.html.erb
+│  │  │  └─ index.html.erb
+│  │  └─ dogs/
+│  │     ├─ index.html.erb
+│  │     ├─ new.html.erb
+│  │     └─ show.html.rb
+│  └─ router.rb
+├─ application.rb
+└─ config.ru
+
