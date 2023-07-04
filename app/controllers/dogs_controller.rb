@@ -5,42 +5,32 @@ class DogsController < BaseController
   # GET /dogs
   #
   def index
-    build_response dog_page("this should be a list of dogs")
+    @title = "So many dogs"
+    @dogs = Dog.all
+    build_response render_template
   end
 
   # GET /dogs/:id
   #
   def show
-    build_response dog_page("this should show dog ##{params[:id]}")
+    @dog = Dog.find(params[:id])
+    @title = "#{@dog.name}'s page"
+    build_response render_template
   end
 
   # GET /dogs/new
   #
   def new
-    build_response dog_page("a page to create a new dog")
+    @title = "More dogs please"
+    build_response render_template
   end
+
 
   # POST /dogs
-  # not implemented for now
-  #
   def create
-    redirect_to "/dogs"
-  end
-
-  
-  
-  private
-
-  def dog_page(message)
-    <<~HTML
-      <html>
-        <head><title>A Funincular Page with Dogs</title></head>
-        <body>
-          <h1>This is DogsController##{params[:action]}</h1>
-          <p>#{message}</p>
-        </body>
-      </html>
-    HTML
+    dog = Dog.new(name: params['dog']['name'])
+    dog.save
+    redirect_to "dogs/#{dog.id}"
   end
 
 end

@@ -1,13 +1,14 @@
 <html>
-  <head>
-    <title>Ruby Funicular</title>
-  </head>
+  <%= render_partial "base/_head.html.erb" %>
+
   <body>
-    <h1>Welcome to Ruby Funicular</h1>
-    <p>It's a fun ride!</p>  
-    <h2>Resources</h2>
-    <ul>
-      <li><a href="/dogs">Dogs</a></li>
-    </ul>
+    <div>
+      <h1>Ruby Funicular</h1>
+      
+      <ul>
+        <li><a href="/dogs">Dogs</a></li>
+        <li><a href="/cats">Cats</a></li>
+      </ul>
+    </div>
   </body>
 </html>

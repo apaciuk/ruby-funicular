@@ -1,0 +1,22 @@
+<html>
+  <%= render_partial "base/_head.html.erb" %>
+
+  <body>
+    <div>
+      <h1><%= @title %></h1>
+      <p>
+        <a href="/dogs/new">Create a new dog</a>
+      </p>
+
+      <ul>
+        <% @dogs.each do |dog| %>
+          <li>
+            <a href="/dogs/<%= dog.id %>">
+              <%= "#{dog.id} - #{dog.name}" %>
+            </a>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+  </body>
+</html>
